@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>UPHMIS Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/uikit.min.css" />
+</head>
+<style>
+    body {
+        height: 800px;
+        background: #F8F8F8;
+    }
+
+    nav div {
+        background: #FF9933;
+    }
+
+    nav h3 {
+        margin: 0;
+        color: #ffffff;
+    }
+
+    .uk-card-primary {
+        background: #838B8B;
+    }
+
+    .uk-card-primary:hover {
+        cursor: pointer;
+        background: #555555;
+    }
+
+    .uk-card-default:hover {
+        cursor: pointer;
+    }
+
+    @media only screen and (max-width: 500px) {
+        .uk-flex {
+            flex-direction: column;
+        }
+        .uk-card {
+            margin-left: 0px!important;
+            margin-bottom: 20px!important;
+        }
+    }
+</style>
+
+<body>
+
+    <!--Nav Bar-->
+    <nav class="uk-navbar-container" uk-navbar>
+        <div class="uk-navbar-left">
+            <ul class="uk-navbar-nav">
+                <li class="uk-active">
+                    <a href="">
+                        <h3>UPHMIS Dashboard</h3>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!--Content Section-->
+    <div class="uk-section uk-section-muted">
+        <div class="uk-container">
+
+            <div class="uk-panel uk-dark uk-margin-medium">
+                <h3>Indicator Group</h3>
+            </div>
+
+
+            <div class="uk-flex uk-flex-center uk-flex-around">
+                <div onclick="location.href='./Dashboard.html?indid=v94lWO8FPMr'">
+                    <div class="uk-card uk-card-primary  uk-card-body uk-margin-bottom">
+                        <h3 class="uk-card-title">Maternal Health</h3>
+                        <p>Genrate Interactive Dashboard. Visualize Data on Charts , Maps and Tables.
+                        </p>
+                    </div>
+                </div>
+                <div onclick="location.href='./Dashboard.html?indid=WvkolZrjUSI'">
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-margin-left uk-margin-bottom ">
+                        <h3 class="uk-card-title">Child Health</h3>
+                        <p>Genrate Interactive Dashboard. Visualize Data on Charts , Maps and Tables.
+                        </p>
+                    </div>
+                </div>
+                <div onclick="location.href='./Dashboard.html?indid=bwOlCJ7IfK8'">
+                    <div class="uk-card uk-card-primary  uk-card-body uk-light uk-margin-left uk-margin-bottom">
+                        <h3 class="uk-card-title">Child Immunization</h3>
+                        <p>Genrate Interactive Dashboard. Visualize Data on Charts , Maps and Tables.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="uk-flex uk-flex-center uk-flex-around">
+                <div onclick="location.href='./Dashboard.html?indid=wOlXYlamUm3'">
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-dark">
+                        <h3 class="uk-card-title">Family planning</h3>
+                        <p>Genrate Interactive Dashboard. Visualize Data on Charts , Maps and Tables.
+                        </p>
+                    </div>
+                </div>
+                <div onclick="location.href='./Dashboard.html?indid=GCsRiA9tJp7'">
+                    <div class="uk-card uk-card-primary uk-card-body uk-light uk-margin-left">
+                        <h3 class="uk-card-title">Hospital Services</h3>
+                        <p>Genrate Interactive Dashboard.Visualize Data on Charts , Maps and Tables.</p>
+                    </div>
+                </div>
+                <div onclick="location.href='./Dashboard.html?indid=mnFw37EFxXM'">
+                    <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-dark uk-margin-left">
+                        <h3 class="uk-card-title">Civil Works</h3>
+                        <p>Genrate Interactive Dashboard.Visualize Data on Charts , Maps and Tables.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="./JS/jquery.js"></script>
+    <script>
+        $(function () {
+
+            $.post("http://192.168.1.100:8080/uphmis225/dhis-web-commons-security/login.action?authOnly=true", {
+                // $.post("http://uphmis.in/uphmis/dhis-web-commons-security/login.action?authOnly=true", {
+                j_username: "akash", j_password: "Akash@123"
+            }, setlink);
+        });
+
+        function setlink() {
+
+        }
+    </script>
+
+</body>
+
+</html>
