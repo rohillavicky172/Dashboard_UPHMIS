@@ -1,7 +1,7 @@
 
 
 // var base = 'http://uphmis.in/uphmis/';
-var base = 'http://192.168.1.100:8080/uphmis225/';
+var base = 'https://uphmis.in/portalAPI/';
 
 var map;
 var tabledata;
@@ -37,7 +37,7 @@ function SetOrgunit(indid) {
         type: "GET",
         dataType: "json",
         contentType: "application/json",
-        url: base + 'api/organisationUnitGroups/Y6VJukQY7rJ.json?fields=organisationUnits[id,name,code]',
+        url: base + 'organisationUnitGroups/Y6VJukQY7rJ.json?fields=organisationUnits[id,name,code]',
         success: function (data) {
 
 
@@ -68,7 +68,7 @@ function indicator_drop(indid) {
         type: "GET",
         dataType: "json",
         contentType: "application/json",
-        url: base + 'api/25/indicatorGroups/' + indid + '.json?fields=id,name,indicators[id,name,code]',
+        url: base + 'indicatorGroups/' + indid + '.json?fields=id,name,indicators[id,name,code]',
         success: function (data) {
 
             var dataElements = data.indicators;
@@ -230,7 +230,7 @@ function table(indicatorId, orgunitId, date) {
         type: "GET",
         dataType: "json",
         contentType: "application/json",
-        url: "" + base + "/api/25/analytics.json?dimension=dx:" + indicatorId + "&dimension=ou:LEVEL-4;" + orgunitId + "&filter=pe:" + date + "&displayProperty=NAME",
+        url: "" + base + "analytics.json?dimension=dx:" + indicatorId + "&dimension=ou:LEVEL-4;" + orgunitId + "&filter=pe:" + date + "&displayProperty=NAME",
         success: function (data) {
             table_data(data);
         },
@@ -267,7 +267,7 @@ function createchart(date, orgunitId, indicatorId, indicatorName) {
         type: "GET",
         dataType: "json",
         contentType: "application/json",
-        url: "" + base + "/api/25/analytics.json?dimension=pe:" + date + "&dimension=ou:" + orgunitId + "&filter=dx:" + indicatorId + "&displayProperty=NAME",
+        url: "" + base + "analytics.json?dimension=pe:" + date + "&dimension=ou:" + orgunitId + "&filter=dx:" + indicatorId + "&displayProperty=NAME",
         success: function (data) {
             for (var i = 0; i < data.rows.length; i++) {
                 xaxis.push(data.metaData.names[data.rows[i][0]]);
@@ -376,7 +376,7 @@ function piechart(orgunitId, indicatorId, date, indicatorName) {
         type: "GET",
         dataType: "json",
         contentType: "application/json",
-        url: "" + base + "/api/25/analytics.json?dimension=FmDv7glZ1V0:nIVbiyAyRrb;UBuxUMmdz1U;JRLIvJzK4H0;gBerHA2rUH0&dimension=ou:" + orgunitId + "&filter=dx:" + indicatorId + "&filter=pe:" + date + "&displayProperty=NAME",
+        url: "" + base + "analytics.json?dimension=FmDv7glZ1V0:nIVbiyAyRrb;UBuxUMmdz1U;JRLIvJzK4H0;gBerHA2rUH0&dimension=ou:" + orgunitId + "&filter=dx:" + indicatorId + "&filter=pe:" + date + "&displayProperty=NAME",
         success: function (data) {
 
 
@@ -441,7 +441,7 @@ function faciltity_Column(orgunitId, indicatorId, date, indicatorName) {
         type: "GET",
         dataType: "json",
         contentType: "application/json",
-        url: base + '/api/25/analytics.json?dimension=ou:' + orgunitId + '&dimension=FmDv7glZ1V0:nIVbiyAyRrb;UBuxUMmdz1U;JRLIvJzK4H0;gBerHA2rUH0&filter=dx:' + indicatorId + '&filter=pe:' + date + '&displayProperty=NAME',
+        url: base + 'analytics.json?dimension=ou:' + orgunitId + '&dimension=FmDv7glZ1V0:nIVbiyAyRrb;UBuxUMmdz1U;JRLIvJzK4H0;gBerHA2rUH0&filter=dx:' + indicatorId + '&filter=pe:' + date + '&displayProperty=NAME',
         success: function (data) {
 
             orgunit = data.metaData.names[orgunitId];
@@ -511,7 +511,7 @@ function Piechart1(orgunitId, indicatorId, date, indicatorName) {
         type: "GET",
         dataType: "json",
         contentType: "application/json",
-        url: base + 'api/25/analytics.json?dimension=dx:' + indicatorId + '&dimension=ou:LEVEL-3;' + orgunitId + '&filter=pe:' + date + '&displayProperty=NAME',
+        url: base + 'analytics.json?dimension=dx:' + indicatorId + '&dimension=ou:LEVEL-3;' + orgunitId + '&filter=pe:' + date + '&displayProperty=NAME',
         success: function (data) {
             for (var i = 0; i < data.rows.length; i++) {
                 og = data.rows[i][1];
@@ -574,7 +574,7 @@ function Divison_Column(orgunitId, indicatorId, date, indicatorName) {
         type: "GET",
         dataType: "json",
         contentType: "application/json",
-        url: base + '/api/25/analytics.json?dimension=dx:' + indicatorId + '&dimension=ou:LEVEL-3;' + orgunitId + '&filter=pe:' + date + '&displayProperty=NAME',
+        url: base + 'analytics.json?dimension=dx:' + indicatorId + '&dimension=ou:LEVEL-3;' + orgunitId + '&filter=pe:' + date + '&displayProperty=NAME',
         success: function (data) {
             for (var i = 0; i < data.rows.length; i++) {
                 xaxis.push(data.metaData.names[data.rows[i][1]]);
@@ -644,7 +644,7 @@ function map_UP(indicatorId, orgunitId, date) {
         type: "GET",
         dataType: "json",
         contentType: "application/json",
-        url: base + "api/organisationUnits/" + orgunitId + ".json?fields=id,name,coordinates,children[id,name,coordinates]&paging=false",
+        url: base + "organisationUnits/" + orgunitId + ".json?fields=id,name,coordinates,children[id,name,coordinates]&paging=false",
         success: function (response) {
             // var childcord = [];
             coords = JSON.parse(response.coordinates);
@@ -664,7 +664,7 @@ function mapUP_Value(coords, indicatorId, orgunitId, date) {
         type: "GET",
         dataType: "json",
         contentType: "application/json",
-        url: base + "api/organisationUnits/" + orgunitId + ".json?fields=id,name,coordinates&level=2",
+        url: base + "organisationUnits/" + orgunitId + ".json?fields=id,name,coordinates&level=2",
         success: function (response1) {
 
             for (var i = 0; i < response1.organisationUnits.length; i++) {
@@ -689,7 +689,7 @@ function MapdataValue(coords, orgunitname, cordinatess, ogid, indicatorId, orgun
             type: "GET",
             dataType: "json",
             contentType: "application/json",
-            url: base + "api/25/analytics.json?dimension=dx:" + indicatorId + "&dimension=ou:LEVEL-4;" + oggid + "&filter=pe:" + date + "&displayProperty=NAME",
+            url: base + "analytics.json?dimension=dx:" + indicatorId + "&dimension=ou:LEVEL-4;" + oggid + "&filter=pe:" + date + "&displayProperty=NAME",
             success: function (response) {
                 if (response.rows.length == 0) {
                     datavalue.push(null);
@@ -699,7 +699,21 @@ function MapdataValue(coords, orgunitname, cordinatess, ogid, indicatorId, orgun
                         datavalue.push(response.rows[i][2]);
                     }
                 }
-                createMap(coords, orgunitname, datavalue, cordinatess, ogid);
+
+             
+                var largest = 0;
+
+                for (i = 0; i <= datavalue.length; i++) {
+                    if (parseInt(datavalue[i]) > largest) {
+                        var largest = parseInt(datavalue[i]);
+                    }
+                }
+
+    
+
+                createMap(coords, orgunitname, datavalue, cordinatess, ogid, largest);
+
+
 
             },
             error: function (response) {
@@ -709,7 +723,19 @@ function MapdataValue(coords, orgunitname, cordinatess, ogid, indicatorId, orgun
 }
 
 
-function createMap(coords, orgunitname, datavalue, cordinatess, ogid) {
+function createMap(coords, orgunitname, datavalue, cordinatess, ogid, largest) {
+
+   
+    var legendValues1 =  Math.round(largest / 3);
+   
+    var legendValues2 = legendValues1 + legendValues1;
+
+    var legendValues3 = legendValues1 + legendValues1 + legendValues1;
+
+    var gradesData = [];
+    gradesData.push(0, legendValues1, legendValues2, legendValues3);
+
+
     var mm = {
         "type": "Feature",
         "geometry": {
@@ -779,10 +805,10 @@ function createMap(coords, orgunitname, datavalue, cordinatess, ogid) {
         // get color depending on population density value
         function getColor(d) {
             return d == undefined ? '#00BCD4' :
-                d > 90 ? '#9C27B0' :
-                    d > 90 ? '#008744' :
-                        d > 60 ? '#50B948' :
-                            d > 30 ? '#FFD302' :
+                d > legendValues3 ? '#9C27B0' :
+                    d > legendValues3 ? '#008744' :
+                        d > legendValues2 ? '#50B948' :
+                            d > legendValues1 ? '#FFD302' :
                                 '#F85E35';
         }
 
@@ -851,7 +877,7 @@ function createMap(coords, orgunitname, datavalue, cordinatess, ogid) {
         legend.onAdd = function (map) {
 
             var div = L.DomUtil.create('div', 'info legend'),
-                grades = [0, 30, 60, 90],
+                grades = gradesData,
                 labels = [],
                 from, to;
 
@@ -914,10 +940,10 @@ function createMap(coords, orgunitname, datavalue, cordinatess, ogid) {
             // get color depending on population density value
             function getColor(d) {
                 return d == undefined ? '#00BCD4' :
-                    d > 90 ? '#9C27B0' :
-                        d > 90 ? '#008744' :
-                            d > 60 ? '#50B948' :
-                                d > 30 ? '#FFD302' :
+                    d > legendValues3 ? '#9C27B0' :
+                        d > legendValues3 ? '#008744' :
+                            d > legendValues2 ? '#50B948' :
+                                d > legendValues1 ? '#FFD302' :
                                     '#F85E35';
             }
 
@@ -986,7 +1012,7 @@ function createMap(coords, orgunitname, datavalue, cordinatess, ogid) {
             legend.onAdd = function (map) {
 
                 var div = L.DomUtil.create('div', 'info legend'),
-                    grades = [0, 30, 60, 90],
+                    grades = gradesData,
                     labels = [],
                     from, to;
 
@@ -1033,7 +1059,7 @@ function state_Table(indicatorId, orgunitId, date) {
         type: "GET",
         dataType: "json",
         contentType: "application/json",
-        url: base + "/api/25/analytics.json?dimension=dx:" + indicatorId + "&dimension=ou:LEVEL-5;" + orgunitId + "&filter=pe:" + date + "&displayProperty=NAME",
+        url: base + "analytics.json?dimension=dx:" + indicatorId + "&dimension=ou:LEVEL-5;" + orgunitId + "&filter=pe:" + date + "&displayProperty=NAME",
         success: function (data) {
 
             _Stable(data);
@@ -1069,7 +1095,7 @@ function State_createchart(date, orgunitId, indicatorId, indicatorName) {
         type: "GET",
         dataType: "json",
         contentType: "application/json",
-        url: base + "/api/25/analytics.json?dimension=pe:" + date + "&dimension=ou:" + orgunitId + "&filter=dx:" + indicatorId + "&displayProperty=NAME",
+        url: base + "analytics.json?dimension=pe:" + date + "&dimension=ou:" + orgunitId + "&filter=dx:" + indicatorId + "&displayProperty=NAME",
         success: function (data) {
 
             for (var i = 0; i < data.rows.length; i++) {
@@ -1182,7 +1208,7 @@ function _SPiechart(orgunitId, indicatorId, date, indicatorName) {
         type: "GET",
         dataType: "json",
         contentType: "application/json",
-        url: base + '/api/25/analytics.json?dimension=ou:' + orgunitId + '&dimension=FmDv7glZ1V0:nIVbiyAyRrb;UBuxUMmdz1U;JRLIvJzK4H0;gBerHA2rUH0&filter=pe:' + date + '&filter=dx:' + indicatorId + '&displayProperty=NAME',
+        url: base + 'analytics.json?dimension=ou:' + orgunitId + '&dimension=FmDv7glZ1V0:nIVbiyAyRrb;UBuxUMmdz1U;JRLIvJzK4H0;gBerHA2rUH0&filter=pe:' + date + '&filter=dx:' + indicatorId + '&displayProperty=NAME',
         success: function (data) {
             for (var i = 0; i < data.rows.length; i++) {
                 var xx = data.rows[i][1];
@@ -1244,7 +1270,7 @@ function district_Column(orgunitId, indicatorId, date, indicatorName) {
         type: "GET",
         dataType: "json",
         contentType: "application/json",
-        url: base + '/api/25/analytics.json?dimension=ou:' + orgunitId + '&dimension=FmDv7glZ1V0:nIVbiyAyRrb;UBuxUMmdz1U;JRLIvJzK4H0;gBerHA2rUH0&filter=dx:' + indicatorId + '&filter=pe:' + date + '&displayProperty=NAME',
+        url: base + 'analytics.json?dimension=ou:' + orgunitId + '&dimension=FmDv7glZ1V0:nIVbiyAyRrb;UBuxUMmdz1U;JRLIvJzK4H0;gBerHA2rUH0&filter=dx:' + indicatorId + '&filter=pe:' + date + '&displayProperty=NAME',
         success: function (data) {
             orgunit = data.metaData.names[orgunitId];
             for (var i = 0; i < data.rows.length; i++) {
@@ -1314,7 +1340,7 @@ function Block_Wise(orgunitId, indicatorId, date, indicatorName) {
         type: "GET",
         dataType: "json",
         contentType: "application/json",
-        url: base + '/api/25/analytics.json?dimension=dx:' + indicatorId + '&dimension=ou:LEVEL-5;' + orgunitId + '&filter=pe:' + date + ';&displayProperty=NAME',
+        url: base + 'analytics.json?dimension=dx:' + indicatorId + '&dimension=ou:LEVEL-5;' + orgunitId + '&filter=pe:' + date + ';&displayProperty=NAME',
         success: function (data) {
             for (var i = 0; i < data.rows.length; i++) {
                 og = data.rows[i][1];
@@ -1378,7 +1404,7 @@ function Block_Column(orgunitId, indicatorId, date, indicatorName) {
         type: "GET",
         dataType: "json",
         contentType: "application/json",
-        url: base + '/api/25/analytics.json?dimension=dx:' + indicatorId + '&dimension=ou:LEVEL-5;' + orgunitId + '&filter=pe:' + date + '&displayProperty=NAME',
+        url: base + 'analytics.json?dimension=dx:' + indicatorId + '&dimension=ou:LEVEL-5;' + orgunitId + '&filter=pe:' + date + '&displayProperty=NAME',
         success: function (data) {
             for (var i = 0; i < data.rows.length; i++) {
                 xaxis.push(data.metaData.names[data.rows[i][1]]);
@@ -1444,7 +1470,7 @@ function State_Map(indicatorId, orgunitId, date, e) {
         type: "GET",
         dataType: "json",
         contentType: "application/json",
-        url: "" + base + "/api/organisationUnits/" + orgunitId + ".json?fields=id,name,coordinates,children[id,name,coordinates]&paging=false",
+        url: "" + base + "organisationUnits/" + orgunitId + ".json?fields=id,name,coordinates,children[id,name,coordinates]&paging=false",
         success: function (response) {
             // childcord = [];
             coords = JSON.parse(response.coordinates);
@@ -1465,7 +1491,7 @@ function states_Map(coords, indicatorId, orgunitId, date, e) {
         type: "GET",
         dataType: "json",
         contentType: "application/json",
-        url: base + "/api/organisationUnits/" + orgunitId + ".json?fields=id,name,coordinates&level=1",
+        url: base + "organisationUnits/" + orgunitId + ".json?fields=id,name,coordinates&level=1",
 
         success: function (response1) {
 
@@ -1492,11 +1518,11 @@ function State_MapDV(coords, orgunitname, cordinatess, ogid, indicatorId, orguni
     for (i in ogid) {
         var oggid = ogid[i];
         $.ajax({
-            async:false,
+            async: false,
             type: "GET",
             dataType: "json",
             contentType: "application/json",
-            url: "" + base + "/api/25/analytics.json?dimension=dx:" + indicatorId + "&dimension=ou:LEVEL-5;" + oggid + "&filter=pe:" + date + "&displayProperty=NAME",
+            url: "" + base + "analytics.json?dimension=dx:" + indicatorId + "&dimension=ou:LEVEL-5;" + oggid + "&filter=pe:" + date + "&displayProperty=NAME",
             success: function (response) {
                 if (response.rows.length == 0) {
                     datavalue.push(null);
@@ -1507,7 +1533,17 @@ function State_MapDV(coords, orgunitname, cordinatess, ogid, indicatorId, orguni
                     }
                 }
 
-                _SCreateMap(coords, orgunitname, datavalue, cordinatess, e);
+
+                var largest = 0;
+
+                for (i = 0; i <= datavalue.length; i++) {
+                    if (parseInt(datavalue[i]) > largest) {
+                        var largest = parseInt(datavalue[i]);
+                    }
+                }
+
+
+                _SCreateMap(coords, orgunitname, datavalue, cordinatess, e, largest);
 
             },
             error: function (response) {
@@ -1521,8 +1557,20 @@ function State_MapDV(coords, orgunitname, cordinatess, ogid, indicatorId, orguni
 
 
 
-function _SCreateMap(coords, orgunitname, datavalue, cordinatess, e) {
-    // $('.loader').css('display', 'block');
+function _SCreateMap(coords, orgunitname, datavalue, cordinatess, e, largest) {
+    
+
+ 
+
+    var legendValues1 =  Math.round(largest / 3);
+   
+
+    var legendValues2 = legendValues1 + legendValues1;
+
+    var legendValues3 = legendValues1 + legendValues1 + legendValues1;
+
+    var gradesData = [];
+    gradesData.push(0, legendValues1, legendValues2, legendValues3);
 
 
     var lat_long = coords[0];
@@ -1606,10 +1654,10 @@ function _SCreateMap(coords, orgunitname, datavalue, cordinatess, e) {
         // get color depending on population density value
         function getColor(d) {
             return d == undefined ? '#00BCD4' :
-                d > 90 ? '#9C27B0' :
-                    d > 90 ? '#008744' :
-                        d > 60 ? '#50B948' :
-                            d > 30 ? '#FFD302' :
+                d > legendValues3 ? '#9C27B0' :
+                    d > legendValues3 ? '#008744' :
+                        d > legendValues2 ? '#50B948' :
+                            d > legendValues1 ? '#FFD302' :
                                 '#F85E35';
         }
 
@@ -1691,7 +1739,7 @@ function _SCreateMap(coords, orgunitname, datavalue, cordinatess, e) {
         legend.onAdd = function (map) {
 
             var div = L.DomUtil.create('div', 'info legend'),
-                grades = [0, 30, 60, 90],
+                grades = gradesData,
                 labels = [],
                 from, to;
 
@@ -1751,10 +1799,10 @@ function _SCreateMap(coords, orgunitname, datavalue, cordinatess, e) {
         // get color depending on population density value
         function getColor(d) {
             return d == undefined ? '#00BCD4' :
-                d > 90 ? '#9C27B0' :
-                    d > 90 ? '#008744' :
-                        d > 60 ? '#50B948' :
-                            d > 30 ? '#FFD302' :
+                d > legendValues3 ? '#9C27B0' :
+                    d > legendValues3 ? '#008744' :
+                        d > legendValues2 ? '#50B948' :
+                            d > legendValues1 ? '#FFD302' :
                                 '#F85E35';
         }
 
@@ -1833,7 +1881,7 @@ function _SCreateMap(coords, orgunitname, datavalue, cordinatess, e) {
         legend.onAdd = function (map) {
 
             var div = L.DomUtil.create('div', 'info legend'),
-                grades = [0, 30, 60, 90],
+                grades = gradesData,
                 labels = [],
                 from, to;
 
